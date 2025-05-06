@@ -1,0 +1,22 @@
+ Error: reading Secrets Manager Secret Version (auroradb-zpl-secret|AWSCURRENT): couldn't find resource
+│
+│   with data.aws_secretsmanager_secret_version.db_credentials,
+│   on aurora.tf line 16, in data "aws_secretsmanager_secret_version" "db_credentials":
+│   16: data "aws_secretsmanager_secret_version" "db_credentials" {
+│
+╵
+╷
+│ Error: creating Security Group (zpl-aurora-sg): operation error EC2: CreateSecurityGroup, https response error StatusCode: 400, RequestID: 069c4ae4-ba6f-4591-a018-5f3d690d70b3, api error InvalidGroup.Duplicate: The security group 'zpl-aurora-sg' already exists for VPC 'vpc-063273428bad6e1f0'
+│
+│   with aws_security_group.aurora_sg,
+│   on aurora.tf line 26, in resource "aws_security_group" "aurora_sg":
+│   26: resource "aws_security_group" "aurora_sg" {
+│
+╵
+╷
+│ Error: creating Security Group (zpl-aurora-20250506084414390100000002): operation error EC2: CreateSecurityGroup, https response error StatusCode: 400, RequestID: d7ed0854-aca9-43ca-86cf-0edf6efd2437, api error VPCIdNotSpecified: No default VPC for this user
+│
+│   with module.aurora.aws_security_group.this[0],
+│   on .terraform/modules/aurora/main.tf line 332, in resource "aws_security_group" "this":
+│  332: resource "aws_security_group" "this" {
+│
