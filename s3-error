@@ -1,0 +1,6 @@
+Error: Unsupported argument
+│
+│   on s3.tf line 83, in resource "aws_s3_bucket_lifecycle_configuration" "lifecycle":
+│   83:     abort_incomplete_multipart_upload_days = 7
+│
+│ An argument named "abort_incomplete_multipart_upload_days" is not expected here.
