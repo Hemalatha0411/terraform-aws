@@ -1,0 +1,95 @@
+The shared Terraform script using the terraform-aws-modules/rds-aurora/aws module will create the following AWS resources, assuming all inputs are provided correctly:
+
+
+---
+
+Core Aurora Resources
+
+1. RDS Cluster (aws_rds_cluster)
+
+Engine: aurora-postgresql
+
+Engine version: 16.6
+
+Engine mode: provisioned (but using serverless v2 scaling)
+
+IAM Database Authentication: enabled
+
+Storage Encryption: enabled
+
+Backup retention: 7 days
+
+Final snapshot enabled on deletion
+
+Maintenance and backup windows configured
+
+CloudWatch logs export: ["postgresql"]
+
+Performance Insights: enabled
+
+Deletion Protection: true
+
+
+
+2. RDS Cluster Instances (aws_rds_cluster_instance)
+
+One instance
+
+Instance class: db.serverless (Serverless v2)
+
+Reader and writer endpoints automatically managed
+
+
+
+
+
+---
+
+Networking
+
+3. Security Group (aws_security_group)
+
+Ingress on port 5432 from provided allowed_cidrs
+
+Egress to 0.0.0.0/0
+
+Associated with the RDS cluster
+
+
+
+4. Subnet Group
+
+Reused via db_subnet_group_name input (not created in the script but referenced)
+
+
+
+
+
+---
+
+Secrets
+
+5. Secrets Manager Reference (aws_secretsmanager_secret_version)
+
+Reads DB credentials from a secret (not created in this script)
+
+
+
+
+
+---
+
+Outputs
+
+aurora_endpoint: Writer endpoint
+
+aurora_reader_endpoint: Reader endpoint
+
+aurora_cluster_id: ID of the Aurora cluster
+
+
+
+---
+
+Would you like a visual architecture diagram or a list of minimum IAM permissions required for this module?
+
