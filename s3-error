@@ -4,3 +4,66 @@ Error: Unsupported argument
 │   83:     abort_incomplete_multipart_upload_days = 7
 │
 │ An argument named "abort_incomplete_multipart_upload_days" is not expected here.
+
+------------
+
+aws_s3_bucket_lifecycle_configuration.lifecycle["download"]: Still creating... [50s elapsed]
+aws_s3_bucket_lifecycle_configuration.lifecycle["app_data"]: Creation complete after 55s [id=cmm-app-data-bucket]
+aws_s3_bucket_lifecycle_configuration.lifecycle["upload"]: Creation complete after 55s [id=cmm-upload-bucket]
+aws_s3_bucket_lifecycle_configuration.lifecycle["download"]: Creation complete after 56s [id=cmm-download-bucket]
+╷
+│ Error: creating S3 Bucket (cmm-app-data-bucket) Logging: operation error S3: PutBucketLogging, https response error StatusCode: 400, RequestID: TN15208WCJSSST1Z, HostID: St4pNcLn1aHuUS6zYBp5f8kUDKFRJ47sbNMzIHGS19IFHAYXEswBShSkJwChFDDNOZn2T5wNOrUGVFUbiTnu8aTscTPj1VYNZjVV+RaXTbI=, api error InvalidTargetBucketForLogging: The target bucket for logging does not exist
+│
+│   with aws_s3_bucket_logging.logging["app_data"],
+│   on s3.tf line 90, in resource "aws_s3_bucket_logging" "logging":
+│   90: resource "aws_s3_bucket_logging" "logging" {
+│
+╵
+╷
+│ Error: creating S3 Bucket (cmm-upload-bucket) Logging: operation error S3: PutBucketLogging, https response error StatusCode: 400, RequestID: TN1BKKJV8Y39XBAD, HostID: +ppkYWhfTaJNM41goaepphOQwcWbGs1wRO2vmmI8Aher/mTtkaSglhYkUdPAkP6MHLR2K/+Ra+bUJc8L0NvaLmQ+zg0pDBcE, api error InvalidTargetBucketForLogging: The target bucket for logging does not exist
+│
+│   with aws_s3_bucket_logging.logging["upload"],
+│   on s3.tf line 90, in resource "aws_s3_bucket_logging" "logging":
+│   90: resource "aws_s3_bucket_logging" "logging" {
+│
+╵
+╷
+│ Error: creating S3 Bucket (cmm-download-bucket) Logging: operation error S3: PutBucketLogging, https response error StatusCode: 400, RequestID: TN109FDGSWQR9A0K, HostID: XWF4rV9iSRZgJ/BYxua8GVjN6QisWvEAfaJGFhxp416aPuRcpmWtH51Ew2/lHaSoRJXSR6Tx+ik=, api error InvalidTargetBucketForLogging: The target bucket for logging does not exist
+│
+│   with aws_s3_bucket_logging.logging["download"],
+│   on s3.tf line 90, in resource "aws_s3_bucket_logging" "logging":
+│   90: resource "aws_s3_bucket_logging" "logging" {
+│
+╵
+╷
+│ Error: putting S3 Bucket (cmm-app-data-bucket) Policy: operation error S3: PutBucketPolicy, https response error StatusCode: 403, RequestID: TN1BW9F7FVDDX42R, HostID: Egn+JylZHuM7BAzrJLvAlNay9XgblKypEAmc/BZjX8OwmQuC36nDiawqXH4lhU4i2y6/L194MFlb17tNHdvQXcBMzqUpnJMN20EnLVADJT8=, api error AccessDenied: User: arn:aws:sts::863518427890:assumed-role/cmm-ec2-s3/i-0de084719a784d161 is not authorized to perform: s3:PutBucketPolicy on resource: "arn:aws:s3:::cmm-app-data-bucket" with an explicit deny in a service control policy
+│
+│   with aws_s3_bucket_policy.https_only["app_data"],
+│   on s3.tf line 99, in resource "aws_s3_bucket_policy" "https_only":
+│   99: resource "aws_s3_bucket_policy" "https_only" {
+│
+╵
+╷
+│ Error: putting S3 Bucket (cmm-download-bucket) Policy: operation error S3: PutBucketPolicy, https response error StatusCode: 403, RequestID: TN18S5EQD3822GM7, HostID: jmCVAaKgbSOlpgMuj+t9Czid5ye+2XPo8YVrBUFj9JS5AR9KXY5VX4T6QDx7ZVN9Q349t6+eDThOVRKXprHmsosK+5njL83S, api error AccessDenied: User: arn:aws:sts::863518427890:assumed-role/cmm-ec2-s3/i-0de084719a784d161 is not authorized to perform: s3:PutBucketPolicy on resource: "arn:aws:s3:::cmm-download-bucket" with an explicit deny in a service control policy
+│
+│   with aws_s3_bucket_policy.https_only["download"],
+│   on s3.tf line 99, in resource "aws_s3_bucket_policy" "https_only":
+│   99: resource "aws_s3_bucket_policy" "https_only" {
+│
+╵
+╷
+│ Error: putting S3 Bucket (cmm-upload-bucket) Policy: operation error S3: PutBucketPolicy, https response error StatusCode: 403, RequestID: TN17V1SN35DENKWT, HostID: 3WqYpw+NIo209Pp9abswSyY5csQ6AdJ/Bif1MDPsGjD6yZ16q8GNAa/P8IOrP++9w0C5w+v7YnultZxvs+KL4h3ocrdB8Bhs, api error AccessDenied: User: arn:aws:sts::863518427890:assumed-role/cmm-ec2-s3/i-0de084719a784d161 is not authorized to perform: s3:PutBucketPolicy on resource: "arn:aws:s3:::cmm-upload-bucket" with an explicit deny in a service control policy
+│
+│   with aws_s3_bucket_policy.https_only["upload"],
+│   on s3.tf line 99, in resource "aws_s3_bucket_policy" "https_only":
+│   99: resource "aws_s3_bucket_policy" "https_only" {
+│
+╵
+╷
+│ Error: creating IAM Policy (zpl_s3_policy): operation error IAM: CreatePolicy, https response error StatusCode: 409, RequestID: e4a070e0-6ff3-4311-bea7-f9eba4ded4b6, EntityAlreadyExists: A policy called zpl_s3_policy already exists. Duplicate names are not allowed.
+│
+│   with aws_iam_policy.s3_policy,
+│   on s3.tf line 145, in resource "aws_iam_policy" "s3_policy":
+│  145: resource "aws_iam_policy" "s3_policy" {
+│
+
